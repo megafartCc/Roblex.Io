@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import path from 'path';
+import path from 'node:path';
 
 const bufferUtilsPath = path.resolve(
   __dirname,

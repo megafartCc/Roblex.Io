@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -155,7 +155,7 @@ body {
 .main-nav {
     flex: 1;
     display: flex;
-    gap: 2px;
+    gap: 8px;
     align-items: center;
     justify-content: center;
     isolation: isolate;
@@ -185,25 +185,26 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #E6E6E6;
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    padding: 7px 9px;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 14px;
     border-radius: 999px;
-    transition: color 0.18s ease;
+    transition: color 0.2s ease, background 0.2s ease;
     position: relative;
     z-index: 1;
 }
 
 .nav-link.active {
-    color: #FFFFFF;
-    font-weight: 500;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .nav-link:hover {
     color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 body.is-scrolled .header-container {
@@ -324,7 +325,7 @@ body.is-scrolled .brand-icon {
 }
 
 .hero-title {
-    font-size: clamp(2.8rem, 6vw, 4.4rem);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
     font-weight: 800;
     letter-spacing: 0.4px;
     color: #F2F2F2;
@@ -333,8 +334,8 @@ body.is-scrolled .brand-icon {
 
 .hero-subtitle {
     color: rgba(255, 255, 255, 0.78);
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    line-height: 1.9;
+    font-size: clamp(0.95rem, 1.7vw, 1.12rem);
+    line-height: 1.75;
 }
 
 .hero-cta {

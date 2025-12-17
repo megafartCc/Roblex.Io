@@ -345,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderAnimation();
   initNavHoverHighlight();
   initWordAnimation();
+  initPageLoader();
   initAuthWithBase();
 });
 
@@ -363,4 +364,22 @@ if (splineViewer) {
       console.warn('Unable to hide Spline text nodes', err);
     }
   });
+}
+function initPageLoader() {
+  const loader = document.getElementById('page-loader');
+  if (!loader || loader.dataset.bound) return;
+  loader.dataset.bound = 'true';
+
+  loader.classList.add('is-visible');
+
+  setTimeout(() => {
+    loader.classList.remove('is-visible');
+    loader.addEventListener(
+      'transitionend',
+      () => {
+        loader.style.display = 'none';
+      },
+      { once: true },
+    );
+  }, 450);
 }

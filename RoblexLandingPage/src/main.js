@@ -345,8 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderAnimation();
   initNavHoverHighlight();
   initWordAnimation();
-  initPageLoader();
-  initSplineReadyState();
   initAuthWithBase();
 });
 
@@ -365,60 +363,4 @@ if (splineViewer) {
       console.warn('Unable to hide Spline text nodes', err);
     }
   });
-}
-function initPageLoader() {
-  const loader = document.getElementById('page-loader');
-  if (!loader || loader.dataset.bound) return;
-  loader.dataset.bound = 'true';
-
-  const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
-  const legacyType = performance.navigation ? performance.navigation.type : 0;
-  const isReload = (navEntry && navEntry.type === 'reload') || legacyType === 1;
-
-  if (!isReload || !window.gsap) {
-    loader.style.display = 'none';
-    loader.style.pointerEvents = 'none';
-    loader.style.opacity = '0';
-    return;
-  }
-
-  const logo = loader.querySelector('.page-loader__logo');
-  const pulse = loader.querySelector('.page-loader__pulse');
-
-  loader.style.display = 'flex';
-  loader.style.pointerEvents = 'auto';
-
-  gsap.set(loader, { opacity: 0 });
-  gsap.set(logo, { autoAlpha: 0, scale: 0.7, rotation: -12 });
-  gsap.set(pulse, { autoAlpha: 0, scale: 0.6 });
-
-  const intro = gsap.timeline({
-    defaults: { ease: 'power2.out' },
-    onComplete: () => {
-      gsap.to(loader, {
-        opacity: 0,
-        duration: 0.35,
-        onComplete: () => {
-          loader.style.display = 'none';
-          loader.style.pointerEvents = 'none';
-        },
-      });
-    },
-  });
-
-  intro
-    .to(loader, { opacity: 1, duration: 0.25 })
-    .to(logo, { duration: 0.55, scale: 1.05, rotation: 0, autoAlpha: 1, ease: 'back.out(1.4)' }, 0)
-    .to(pulse, { duration: 0.6, scale: 1.25, autoAlpha: 0.6, ease: 'power1.out' }, 0)
-    .to(pulse, { duration: 0.4, scale: 1.6, autoAlpha: 0 }, '>-0.2');
-}
-
-function initSplineReadyState() {
-  const hero = document.querySelector('.hero-graphic');
-  const viewer = document.querySelector('.spline-background spline-viewer');
-  if (!hero || !viewer) return;
-
-  const reveal = () => hero.classList.add('is-ready');
-  viewer.addEventListener('load', reveal, { once: true });
-  setTimeout(reveal, 5000);
 }

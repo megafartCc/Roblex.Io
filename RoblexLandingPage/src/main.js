@@ -346,6 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavHoverHighlight();
   initWordAnimation();
   initPageLoader();
+  initSplineReadyState();
   initAuthWithBase();
 });
 
@@ -410,4 +411,14 @@ function initPageLoader() {
     .to(logo, { duration: 0.55, scale: 1.05, rotation: 0, autoAlpha: 1, ease: 'back.out(1.4)' }, 0)
     .to(pulse, { duration: 0.6, scale: 1.25, autoAlpha: 0.6, ease: 'power1.out' }, 0)
     .to(pulse, { duration: 0.4, scale: 1.6, autoAlpha: 0 }, '>-0.2');
+}
+
+function initSplineReadyState() {
+  const hero = document.querySelector('.hero-graphic');
+  const viewer = document.querySelector('.spline-background spline-viewer');
+  if (!hero || !viewer) return;
+
+  const reveal = () => hero.classList.add('is-ready');
+  viewer.addEventListener('load', reveal, { once: true });
+  setTimeout(reveal, 5000);
 }

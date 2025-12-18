@@ -46,6 +46,36 @@
       [class*="shadow-[0px_1px_1px_#c8c8c829]"] {
         box-shadow: none !important;
       }
+
+      /* Flatten cards and sidebar tiles */
+      .bg-collection-1-sub-default,
+      .bg-collection-1-sub-active-2,
+      .bg-collection-1-impr-default {
+        box-shadow: none !important;
+        border: 1px solid var(--collection-1-stroke) !important;
+      }
+
+      /* Remove depth from toggle buttons (sun/moon/eye) */
+      button svg {
+        filter: none !important;
+        box-shadow: none !important;
+      }
+      /* Remove any background plate behind the sun/moon toggle */
+      button:has(svg[viewBox="0 0 20 20"]) {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      /* Force eye icon to use local asset and hide broken img placeholders */
+      input[type="password"] ~ button img {
+        display: none !important;
+      }
+      input[type="password"] ~ button {
+        background: transparent url("./assets/icons-eye.svg") center center no-repeat !important;
+        background-size: 20px 20px !important;
+        width: 32px !important;
+        height: 32px !important;
+      }
     </style>
   </head>
   <body>

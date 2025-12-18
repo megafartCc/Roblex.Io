@@ -10,6 +10,14 @@ export default defineConfig({
   preview: {
     allowedHosts: true,
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        adminLogin: path.resolve(__dirname, 'admin/login/index.html'),
+      },
+    },
+  },
   resolve: {
     alias: {
       'three/examples/jsm/utils/BufferGeometryUtils.js':

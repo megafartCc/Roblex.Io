@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { pool, migrate } from './db.js';
 // Make sure this path and file exists: src/utils/email.js
@@ -240,11 +241,15 @@ app.post('/api/resend-code', async (req, res) => {
 // ------------------------------------
 // Static Admin Login (served separately from public landing)
 // ------------------------------------
-const adminLoginPath = path.resolve(__dirname, '..', '..', 'RoblexLandingPage', 'AdminPanel', 'login');
-app.use('/admin/login', express.static(adminLoginPath));
-app.get('/admin/login', (_req, res) => {
-    res.sendFile(path.join(adminLoginPath, 'index.html'));
-});
+const adminLoginPath = path.resolve(__dirname, '..', '..', 'RoblexLandingPage', 'public', 'admin', 'login');
+if (fs.existsSync(adminLoginPath)) {
+    app.use('/admin/login', express.static(adminLoginPath));
+    app.get('/admin/login', (_req, res) => {
+        res.sendFile(path.join(adminLoginPath, 'index.html'));
+    });
+} else {
+    console.warn(`Admin login static assets not found at ${adminLoginPath}. Skipping /admin/login route.`);
+}
 
 
 // ------------------------------------

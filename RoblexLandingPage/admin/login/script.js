@@ -11,6 +11,7 @@ peekButton?.addEventListener("click", () => {
   const show = passwordField.type === "password";
   passwordField.type = show ? "text" : "password";
   peekButton.classList.toggle("peek--active", show);
+  peekButton.setAttribute("aria-label", show ? "Скрыть пароль" : "Показать пароль");
 });
 
 themeToggle?.addEventListener("click", () => {
@@ -18,6 +19,10 @@ themeToggle?.addEventListener("click", () => {
     document.documentElement.dataset.collection1Mode === "dark" ? "light" : "dark";
   document.documentElement.dataset.collection1Mode = next;
   if (surface) surface.dataset.collection1Mode = next;
+  themeToggle.setAttribute(
+    "aria-label",
+    next === "dark" ? "Переключить на светлую тему" : "Переключить на тёмную тему"
+  );
 });
 
 rememberToggle?.addEventListener("click", () => {
@@ -40,7 +45,7 @@ form?.addEventListener("submit", (event) => {
   if (!button) return;
   const defaultLabel = button.textContent?.trim() || "Продолжить";
   button.disabled = true;
-  button.textContent = "Проверяем доступ...";
+  button.textContent = "Отправляем данные...";
 
   setTimeout(() => {
     button.disabled = false;

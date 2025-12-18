@@ -22,8 +22,10 @@ peekButton?.addEventListener('click', () => {
 });
 
 const applyTheme = (mode) => {
-  if (!surface) return;
-  surface.dataset.collection1Mode = mode;
+  if (surface) {
+    surface.dataset.collection1Mode = mode;
+  }
+  document.documentElement.dataset.collection1Mode = mode;
   themeToggle?.setAttribute('aria-label', mode === 'dark' ? TO_LIGHT : TO_DARK);
   try {
     localStorage.setItem(STORAGE_KEY, mode);

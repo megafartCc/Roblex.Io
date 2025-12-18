@@ -76,6 +76,23 @@
         width: 32px !important;
         height: 32px !important;
       }
+
+      /* Command/search palette – drop the panel background */
+      [role="dialog"],
+      [role="listbox"] {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      /* Give the search bar a clear outline */
+      input[type="search"],
+      input[placeholder*="Search"] {
+        border: 1px solid var(--collection-1-stroke) !important;
+        border-radius: 10px !important;
+        background: transparent !important;
+        padding: 10px 12px !important;
+      }
     </style>
   </head>
   <body>

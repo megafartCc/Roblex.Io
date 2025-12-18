@@ -1,12 +1,12 @@
-const form = document.getElementById("admin-login-form");
+﻿const form = document.getElementById("admin-login-form");
 const peekButton = document.querySelector(".peek");
 const passwordField = form?.querySelector("input[name='password']");
 
 peekButton?.addEventListener("click", () => {
   if (!passwordField) return;
-  const shouldReveal = passwordField.type === "password";
-  passwordField.type = shouldReveal ? "text" : "password";
-  peekButton.classList.toggle("peek--active", shouldReveal);
+  const show = passwordField.type === "password";
+  passwordField.type = show ? "text" : "password";
+  peekButton.classList.toggle("peek--active", show);
 });
 
 form?.addEventListener("submit", (event) => {
@@ -14,15 +14,12 @@ form?.addEventListener("submit", (event) => {
   const data = new FormData(form);
   const payload = Object.fromEntries(data.entries());
 
-  // Placeholder: wire up to a secure admin auth endpoint when ready.
   console.table(payload);
 
-  const button = form.querySelector(".primary-button");
-  if (!button) {
-    return;
-  }
+  const button = form.querySelector(".Buttons");
+  if (!button) return;
 
-  const defaultLabel = button.textContent;
+  const defaultLabel = button.textContent?.trim() || "Продолжить";
   button.disabled = true;
   button.textContent = "Проверяем доступ...";
 

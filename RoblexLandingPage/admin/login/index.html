@@ -29,6 +29,24 @@
     </style>
     <script type="module" crossorigin src="./assets/index-DiFb_C_T.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BhPUTLX-.css">
+    <style>
+      /* Remove UA default backgrounds on icon-only buttons (eye toggles, etc.) */
+      button[class*="flex-shrink-0"][class*="w-5"][class*="h-5"],
+      button[class*="w-5"][class*="h-5"][class*="relative"] {
+        all: unset;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.25rem;
+        height: 1.25rem;
+        cursor: pointer;
+      }
+
+      /* Kill the subtle 3D shadow on list tiles */
+      [class*="shadow-[0px_1px_1px_#c8c8c829]"] {
+        box-shadow: none !important;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>

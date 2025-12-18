@@ -93,6 +93,20 @@
         background: transparent !important;
         padding: 10px 12px !important;
       }
+
+      /* Make the primary action button read as a button */
+      .bg-collection-1-buttons-primary-default {
+        border: 1px solid var(--collection-1-stroke) !important;
+        box-shadow: none !important;
+        transition: background-color 120ms ease, transform 120ms ease;
+      }
+      .bg-collection-1-buttons-primary-default:hover {
+        background: #f0f0f0 !important;
+        transform: translateY(-1px);
+      }
+      .bg-collection-1-buttons-primary-default:active {
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body>
